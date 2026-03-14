@@ -14,3 +14,5 @@ restultadoPalabrasVacias=[palabra for palabra in tokenizar if palabra not in pal
 print(tokenizar)
 print(oraciones)
 print(restultadoPalabrasVacias)
+
+
