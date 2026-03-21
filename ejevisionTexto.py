@@ -11,7 +11,7 @@ async def leer(update:Update,context:ContextTypes.DEFAULT_TYPE):
     imagenDescargar=await update.message.photo[-1].get_file()
     await imagenDescargar.download_to_drive("imagenTelegram.jpg")
     leerImagen=cv2.imread("imagenTelegram.jpg")
-    resultado=analisis.predict(leerImagen)
+    resultado=analisis.ocr(leerImagen)
     print(resultado)
     textoDetectado=""
     if resultado is not None:
@@ -19,7 +19,7 @@ async def leer(update:Update,context:ContextTypes.DEFAULT_TYPE):
             if res is not None:
                 for line in res:
               
-                    textoDetectado += line[1][0] + "\n"
+                    textoDetectado += line[1][0]
     if textoDetectado.strip()=="":
         textoDetectado="NO SE ENCONTRO NINGUN TEXTO EN LA IMAGEN"
     await update.message.reply_text("Texto detectado:\n"+ textoDetectado)
